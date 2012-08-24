@@ -2,6 +2,8 @@
 
 This repository contains a plugin to the Nuxeo ECM (http://www.nuxeo.com) for all customizations made by the Indianapolis Museum of Art (IMA). It is used in production by the IMA and provided publicly for the reference of others.
 
+This code is made available under the same LGPL license as Nuxeo. See LICENSE.txt for details.
+
 ### BUILDING
 Run the following on the command line in order to build a jar for this project:
 
