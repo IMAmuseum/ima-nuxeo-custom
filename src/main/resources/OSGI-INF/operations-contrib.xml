@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.operation">
+
+	<!--
+	This file declares custom Nuxeo automation API operations
+	-->
+
+	<extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+
+		<!-- Operation for accessing the source of a published document -->
+		<operation class="org.imamuseum.nuxeo.custom.operations.GetWorkingCopyDocumentOperation" />
+
+	</extension>
+
+</component>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fragment version="1">
+
+	<!--
+	This file controls how our plugin is deployed into Nuxeo
+	-->
+
+	<require>org.nuxeo.ecm.platform.lang</require>
+	<require>org.nuxeo.dam.web</require>
+
+	<extension target="application#MODULE">
+		<module>
+			<java>${bundle.fileName}</java>
+		</module>
+	</extension>
+
+	<!-- A page for displaying a custom print view of CollectionSurvey document types -->
+	<extension target="faces-config#NAVIGATION">
+		<navigation-case>
+			<from-outcome>ima_collection_survey_report</from-outcome>
+			<to-view-id>/incl/tabs/collection_survey_report.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</extension>
+
+	<!-- Rules for deploying web files and il8n -->
+	<install>
+
+		<!-- Unzip the war template to deploy web files -->
+		<unzip from="${bundle.fileName}" to="/" prefix="web">
+			<include>web/nuxeo.war/**</include>
+		</unzip>
+
+		<!-- Append translations -->
+		<mkdir path="ima.nuxeo.custom.tmp" />
+		<unzip from="${bundle.fileName}" to="ima.nuxeo.custom.tmp" />
+		<append
+			from="ima.nuxeo.custom.tmp/OSGI-INF/il8n/messages_en.properties"
+			to="nuxeo.war/WEB-INF/classes/messages_en.properties" addNewLine="true" />
+		<delete path="ima.nuxeo.custom.tmp" />
+
+	</install>
+
+</fragment>

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<xs:schema version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imamuseum.org/nuxeo-extensions/#1.0"
+	xmlns:ima="http://www.imamuseum.org/nuxeo-extensions/#1.0">
+
+	<xs:element name="marks" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				distinguishing marks on the work
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="structural_priority" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="aesthetic_priority" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="storage_condition" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="storage_display" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				general condition information for complex objects
+				(ie: objects, variable media, and textiles. Use specified fields
+				below, where applicable, for objects comprised of specific
+				layers/structure
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="exam_location" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				where the work was examined
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="condition_description" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				General description info that aid with the
+				condition field
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="condition_general" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Open text regarding the condition of an artwork
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="mount" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for mount or base that is
+				part of the object (may be original or a later fabrication)
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="support_secondary" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for the secondary support
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="support_primary" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for the primary support
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="ground" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for the ground or preparatory
+				layer
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="media" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for paint or media layers
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="surface" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				condition information for the surface coatings or
+				varnish
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="testing" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				information regarding any testing done during
+				survey (ie: solubility)
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="recommendations" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				any recommendation for further examination or
+				testing, handling recommendation or restrictions, or additional
+				treatment recommendations
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="travel_recommendations" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Information regarding travel concerns or special considerations necessary to ensure safe travel.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="loan_eligibility" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<xs:element name="optimal_storage_parameters" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Describe ideal physical requirements for storage, including climate (temperature and RH ranges)
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="optimal_display_parameters" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Describe requirements for light levels, rotation duration, glazing, etc			
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="proposed_treatment" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				list proposed conservation treatment steps in order of application
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="proposed_treatment_time" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Estimate the number of hours needed to complete the treatment.  A range of hours can be given.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="required_treatment" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Indicate the required treatment steps, including any pertinent information regarding the materials used for treatment
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="required_treatment_time" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Estimate the number of hours needed to complete the treatment.  A range of hours can be given.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="anticipated_treatment_results" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Discussion regarding the expected outcome of various treatment stages on the physical integrity of the art work as well as the aesthetic appearance.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="flag_information" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				outstanding information, including major travel,
+				condition, or storage issues that need specific note beyond the
+				recommendations field
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="additional_information" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+				Any information about the artwork that needs to be added to the collections database or information that needs to be changed/corrected in the database.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<xs:schema version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imamuseum.org/nuxeo-extensions/#1.0"
+	xmlns:ima="http://www.imamuseum.org/nuxeo-extensions/#1.0">
+	
+	<!-- This schema adds a priority to image doc types -->
+	<xs:element name="image_priority" type="xs:int" default="0" />
+
+</xs:schema>

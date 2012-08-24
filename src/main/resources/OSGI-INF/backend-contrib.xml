@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.backend">
+
+	<require>org.nuxeo.ecm.platform.wi.service.WIPluggableBackendManager</require>
+
+	<!-- Define a custom backend for exposing on the folders we want over WebDav -->
+	<extension target="org.nuxeo.ecm.platform.wi.service.WIPluggableBackendManager" point="backendFactory">
+		<backendFactory name="imaBackendFactory" class="org.imamuseum.nuxeo.custom.backend.ImaBackendFactory" />
+	</extension>
+
+</component>

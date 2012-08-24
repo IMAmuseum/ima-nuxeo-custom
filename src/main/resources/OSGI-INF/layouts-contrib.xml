@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="org.imamuseum.nuxeo.custom.layouts">
+
+	<!-- Required dependencies for overriding the Video and Picture layouts -->
+	<require>org.nuxeo.ecm.platform.video.layouts</require>
+	<require>org.nuxeo.ecm.platform.picture.jsf.layouts</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
+
+		<layout name="ima_new_media">
+
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+				<template mode="summary">/layouts/layout_default_template.xhtml</template>
+			</templates>
+
+			<rows>
+				<row>
+					<widget>series_title</widget>
+				</row>
+				<row>
+					<widget>series_description</widget>
+				</row>
+				<row>
+					<widget>artbabble_title</widget>
+				</row>
+				<row>
+					<widget>artbabble_id</widget>
+				</row>
+				<row>
+					<widget>imatv_babble_id</widget>
+				</row>
+				<row>
+					<widget>itunesu_title</widget>
+				</row>
+			</rows>
+
+			<widget name="series_title" type="text">
+				<labels>
+					<label mode="any">label.title.series_title</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.series_title</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:series_title</field>
+				</fields>
+			</widget>
+			<widget name="series_description" type="textarea">
+				<labels>
+					<label mode="any">label.title.series_description</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.series_description</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:series_description</field>
+				</fields>
+			</widget>
+			<widget name="artbabble_title" type="text">
+				<labels>
+					<label mode="any">label.title.artbabble_title</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.artbabble_title</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:artbabble_title</field>
+				</fields>
+			</widget>
+			<widget name="artbabble_id" type="text">
+				<labels>
+					<label mode="any">label.title.artbabble_id</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.artbabble_id</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:artbabble_id</field>
+				</fields>
+			</widget>
+			<widget name="imatv_babble_id" type="text">
+				<labels>
+					<label mode="any">label.title.imatv_babble_id</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.imatv_babble_id</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:imatv_babble_id</field>
+				</fields>
+			</widget>
+			<widget name="itunesu_title" type="text">
+				<labels>
+					<label mode="any">label.title.itunesu_title</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.itunesu_title</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_new_media:itunesu_title</field>
+				</fields>
+			</widget>
+
+		</layout>
+
+		<layout name="video_summary_layout">
+			<templates>
+				<template mode="any">/layouts/layout_summary_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>summary_video_player</widget>
+					<widget>summary_current_document_files</widget>
+					<widget>summary_video_conversions</widget>
+					<widget>damc_author</widget>
+					<widget>damc_authoringDate</widget>
+					<widget>summary_current_document_view</widget>
+					<widget>summary_current_document_dublincore</widget>
+					<widget>summary_current_document_comments</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_lc_and_version</widget>
+					<widget>summary_current_document_actions</widget>
+					<widget>summary_video_storyboard</widget>
+					<widget>summary_video_info</widget>
+					<widget>summary_current_document_tagging</widget>
+					<widget>summary_current_document_relations</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_publications</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_single_tasks</widget>
+				</row>
+			</rows>
+		</layout>
+
+		<layout name="ima_image_priority">
+
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+				<template mode="summary">/layouts/layout_default_template.xhtml</template>
+			</templates>
+
+			<rows>
+				<row>
+					<widget>image_priority</widget>
+				</row>
+			</rows>
+
+			<widget name="image_priority" type="int">
+				<labels>
+					<label mode="any">label.title.image_priority</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.image_priority</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_image_priority:image_priority</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="required">true</property>
+				</properties>
+			</widget>
+
+		</layout>
+
+		<layout name="picture_summary_layout">
+			<templates>
+				<template mode="any">/layouts/layout_summary_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>summary_picture_view</widget>
+					<widget>summary_current_document_files</widget>
+					<widget>summary_current_document_description</widget>
+					<widget>damc_author</widget>
+					<widget>damc_authoringDate</widget>
+					<widget>summary_current_document_view</widget>
+					<widget>summary_current_document_dublincore</widget>
+					<widget>summary_current_document_comments</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_lc_and_version</widget>
+					<widget>summary_current_document_actions</widget>
+					<widget>summary_current_document_custom_actions</widget>
+					<widget>summary_current_document_tagging</widget>
+					<widget>summary_current_document_relations</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_publications</widget>
+				</row>
+				<row>
+					<widget>summary_current_document_single_tasks</widget>
+				</row>
+			</rows>
+		</layout>
+
+		<layout name="ima_art_ids">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>art_ids</widget>
+				</row>
+			</rows>
+			<widget name="art_ids" type="template">
+				<labels>
+					<label mode="any">label.title.art_ids</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.art_ids</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_ids:art_ids</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">/widgets/artworks_suggestion_widget.xhtml</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+		</layout>
+
+		<layout name="ima_collection_survey_heading">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>title</widget>
+				</row>
+			</rows>
+			<widget name="title" type="text">
+				<labels>
+					<label mode="any">title</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>dc:title</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="required">true</property>
+					<property name="styleClass">dataInputText</property>
+				</properties>
+				<properties widgetMode="create">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+		</layout>
+
+		<layout name="ima_collection_survey">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>marks</widget>				
+				</row>
+				<row>
+					<widget>structural_priority</widget>
+				</row>
+				<row>
+					<widget>aesthetic_priority</widget>
+				</row>
+				<row>
+					<widget>storage_condition</widget>
+				</row>
+				<row>
+					<widget>storage_display</widget>
+				</row>
+				<row>
+					<widget>exam_location</widget>
+				</row>
+				<row>
+					<widget>condition_description</widget>
+				</row>
+				<row>
+					<widget>condition_general</widget>
+				</row>
+				<row>
+					<widget>mount</widget>
+				</row>
+				<row>
+					<widget>support_secondary</widget>
+				</row>
+				<row>
+					<widget>support_primary</widget>
+				</row>
+				<row>
+					<widget>ground</widget>
+				</row>
+				<row>
+					<widget>media</widget>
+				</row>
+				<row>
+					<widget>surface</widget>
+				</row>
+				<row>
+					<widget>testing</widget>
+				</row>
+				<row>
+					<widget>proposed_treatment</widget>
+				</row>
+				<row>
+					<widget>proposed_treatment_time</widget>
+				</row>
+				<row>
+					<widget>required_treatment</widget>
+				</row>
+				<row>
+					<widget>required_treatment_time</widget>
+				</row>
+				<row>
+					<widget>anticipated_treatment_results</widget>
+				</row>
+				<row>
+					<widget>recommendations</widget>
+				</row>
+				<row>
+					<widget>travel_recommendations</widget>
+				</row>
+				<row>
+					<widget>loan_eligibility</widget>
+				</row>
+				<row>
+					<widget>optimal_storage_parameters</widget>
+				</row>
+				<row>
+					<widget>optimal_display_parameters</widget>
+				</row>
+				<row>
+					<widget>flag_information</widget>
+				</row>
+				<row>
+					<widget>additional_information</widget>
+				</row>
+				<row>
+					<widget>created</widget>
+				</row>
+				<row>
+					<widget>modified</widget>
+				</row>
+				<row>
+					<widget>author</widget>
+				</row>
+				<row>
+					<widget>contributors</widget>
+				</row>
+			</rows>
+
+			<widget name="marks" type="textarea">
+				<labels>
+					<label mode="any">label.title.marks</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.marks</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:marks</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="structural_priority" type="template">
+				<labels>
+					<label mode="any">label.title.structural_priority</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.structural_priority</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:structural_priority</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">/widgets/survey_priority_rating_widget.xhtml</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="aesthetic_priority" type="template">
+				<labels>
+					<label mode="any">label.title.aesthetic_priority</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.aesthetic_priority</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:aesthetic_priority</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">/widgets/survey_priority_rating_widget.xhtml</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="storage_condition" type="template">
+				<labels>
+					<label mode="any">label.title.storage_condition</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.storage_condition</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:storage_condition</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">/widgets/survey_condition_rating_widget.xhtml</property>
+					<property name="required">true</property>
+				</properties>
+			</widget>
+			<widget name="storage_display" type="textarea">
+				<labels>
+					<label mode="any">label.title.storage_display</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.storage_display</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:storage_display</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="exam_location" type="textarea">
+				<labels>
+					<label mode="any">label.title.exam_location</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.exam_location</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:exam_location</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="condition_description" type="textarea">
+				<labels>
+					<label mode="any">label.title.condition_description</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.condition_description</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:condition_description</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="condition_general" type="textarea">
+				<labels>
+					<label mode="any">label.title.condition_general</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.condition_general</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:condition_general</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="mount" type="textarea">
+				<labels>
+					<label mode="any">label.title.mount</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.mount</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:mount</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="support_secondary" type="textarea">
+				<labels>
+					<label mode="any">label.title.support_secondary</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.support_secondary</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:support_secondary</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="support_primary" type="textarea">
+				<labels>
+					<label mode="any">label.title.support_primary</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.support_primary</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:support_primary</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="ground" type="textarea">
+				<labels>
+					<label mode="any">label.title.ground</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.ground</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:ground</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="media" type="textarea">
+				<labels>
+					<label mode="any">label.title.media</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.media</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:media</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="surface" type="textarea">
+				<labels>
+					<label mode="any">label.title.surface</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.surface</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:surface</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="testing" type="textarea">
+				<labels>
+					<label mode="any">label.title.testing</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.testing</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:testing</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="recommendations" type="textarea">
+				<labels>
+					<label mode="any">label.title.recommendations</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.recommendations</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:recommendations</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="travel_recommendations" type="textarea">
+				<labels>
+					<label mode="any">label.title.travel_recommendations</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.travel_recommendations</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:travel_recommendations</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="loan_eligibility" type="template">
+				<labels>
+					<label mode="any">label.title.loan_eligibility</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.loan_eligibility</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:loan_eligibility</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="template">/widgets/survey_loan_eligibility_widget.xhtml</property>
+				</properties>
+			</widget>
+			<widget name="optimal_storage_parameters" type="textarea">
+				<labels>
+					<label mode="any">label.title.optimal_storage_parameters</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.optimal_storage_parameters</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:optimal_storage_parameters</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="optimal_display_parameters" type="textarea">
+				<labels>
+					<label mode="any">label.title.optimal_display_parameters</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.optimal_display_parameters</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:optimal_display_parameters</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="proposed_treatment" type="textarea">
+				<labels>
+					<label mode="any">label.title.proposed_treatment</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.proposed_treatment</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:proposed_treatment</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="proposed_treatment_time" type="text">
+				<labels>
+					<label mode="any">label.title.proposed_treatment_time</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.proposed_treatment_time</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:proposed_treatment_time</field>
+				</fields>
+			</widget>
+			<widget name="required_treatment" type="textarea">
+				<labels>
+					<label mode="any">label.title.required_treatment</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.required_treatment</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:required_treatment</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="required_treatment_time" type="text">
+				<labels>
+					<label mode="any">label.title.required_treatment_time</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.required_treatment_time</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:required_treatment_time</field>
+				</fields>
+			</widget>
+			<widget name="anticipated_treatment_results" type="textarea">
+				<labels>
+					<label mode="any">label.title.anticipated_treatment_results</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.anticipated_treatment_results</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:anticipated_treatment_results</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="flag_information" type="textarea">
+				<labels>
+					<label mode="any">label.title.flag_information</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.flag_information</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:flag_information</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+			<widget name="additional_information" type="textarea">
+				<labels>
+					<label mode="any">label.title.additional_information</label>
+				</labels>
+				<helpLabels>
+					<label mode="any">label.help.additional_information</label>
+				</helpLabels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_collection_survey:additional_information</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="rows">5</property>
+				</properties>
+			</widget>
+		</layout>
+		<layout name="ima_artwork">
+			<templates>
+				<template mode="any">/layouts/layout_default_template.xhtml</template>
+				<template mode="edit">/layouts/layout_default_template.xhtml</template>
+			</templates>
+			<rows>
+				<row>
+					<widget>accession_number</widget>
+				</row>
+				<row>
+					<widget>previous_accession_number</widget>
+				</row>
+				<row>
+					<widget>creation_date</widget>
+				</row>
+				<row>
+					<widget>converted_dimensions</widget>
+				</row>
+				<row>
+					<widget>material_medium_support</widget>
+				</row>
+				<row>
+					<widget>current_location</widget>
+				</row>
+				<row>
+					<widget>artist</widget>
+				</row>
+			</rows>
+			<widget name="accession_number" type="text">
+				<labels>
+					<label mode="any">label.title.accession_number</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:accession_number</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="previous_accession_number" type="text">
+				<labels>
+					<label mode="any">label.title.previous_accession_number</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:previous_accession_number</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="creation_date" type="text">
+				<labels>
+					<label mode="any">label.title.creation_date</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:creation_date</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="converted_dimensions" type="text">
+				<labels>
+					<label mode="any">label.title.converted_dimensions</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:converted_dimensions</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="material_medium_support" type="text">
+				<labels>
+					<label mode="any">label.title.material_medium_support</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:material_medium_support</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="current_location" type="text">
+				<labels>
+					<label mode="any">label.title.current_location</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:current_location</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+			<widget name="artist" type="text">
+				<labels>
+					<label mode="any">label.title.artist</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>ima_art_metadata:artist</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="disabled">true</property>
+				</properties>
+			</widget>
+		</layout>
+
+	</extension>
+	
+</component>

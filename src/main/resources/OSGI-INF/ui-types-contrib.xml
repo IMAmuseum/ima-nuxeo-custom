@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="org.imamuseum.nuxeo.custom.uitypes">
+
+	<!-- Require extensions that we are overriding -->
+	<require>org.nuxeo.ecm.platform.video.jsf.types</require>
+	<require>org.nuxeo.ecm.platform.picture.jsf.types</require>
+	<require>org.nuxeo.dam.types</require>
+
+	<extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
+
+		<type id="Video">
+			<layouts mode="any">
+				<layout>dam_common</layout>
+				<layout>ima_new_media</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>heading</layout>
+				<layout>dam_common</layout>
+				<layout>file</layout>
+				<layout>ima_new_media</layout>
+				<layout>dublincore</layout>
+			</layouts>
+		</type>
+
+		<type id="Picture">
+			<layouts mode="any">
+				<layout>ima_image_priority</layout>
+				<layout>dam_common</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>heading</layout>
+				<layout>picture</layout>
+				<layout>ima_image_priority</layout>
+				<layout>dam_common</layout>
+				<layout>dublincore</layout>
+			</layouts>
+		</type>
+
+		<type id="CollectionSurvey">
+			<label>Collection Survey</label>
+			<icon>/icons/collection-survey-sml.png</icon>
+			<bigIcon>/icons/collection-survey-big.png</bigIcon>
+			<default-view>view_documents</default-view>
+			<category>SimpleDocument</category>
+
+			<layouts mode="any">
+				<layout>ima_art_ids</layout>
+				<layout>ima_collection_survey</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>ima_collection_survey_heading</layout>
+				<layout>ima_art_ids</layout>
+				<layout>ima_collection_survey</layout>
+			</layouts>
+		</type>
+
+		<type id="Workspace">
+			<subtypes>
+				<type>CollectionSurvey</type>
+			</subtypes>
+		</type>
+		<type id="Folder">
+			<subtypes>
+				<type>CollectionSurvey</type>
+			</subtypes>
+		</type>
+
+		<type id="ArtworkLibrary">
+			<label>Artwork Library</label>
+			<icon>/icons/artwork-library-sml.png</icon>
+			<bigIcon>/icons/artwork-library-big.png</bigIcon>
+			<default-view>view_documents</default-view>
+			<subtypes>
+				<type>Artwork</type>
+			</subtypes>
+
+			<layouts mode="any">
+				<layout>heading</layout>
+			</layouts>
+			<layouts mode="edit">
+        		<layout>heading</layout>
+        		<layout>dublincore</layout>
+      		</layouts>
+			<contentViews category="content">
+				<contentView>document_content</contentView>
+			</contentViews>
+			<contentViews category="trash_content">
+				<contentView showInExportView="false">
+					document_trash_content
+				</contentView>
+			</contentViews>
+		</type>
+
+		<type id="Artwork">
+			<label>Artwork</label>
+			<icon>/icons/artwork-sml.png</icon>
+			<bigIcon>/icons/artwork-big.png</bigIcon>
+			<default-view>view_documents</default-view>
+			<category>SimpleDocument</category>
+
+			<layouts mode="any">
+				<layout>ima_artwork</layout>
+			</layouts>
+			<layouts mode="edit">
+				<layout>ima_artwork</layout>
+			</layouts>
+		</type>
+
+		<type id="ArtworkLibrary">
+			<subtypes>
+				<type hidden="create">Artwork</type>
+			</subtypes>
+		</type>
+
+	</extension>
+	
+</component>

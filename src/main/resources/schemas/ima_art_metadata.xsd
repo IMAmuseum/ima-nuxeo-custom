@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imamuseum.org/nuxeo-extensions/#1.0"
+	xmlns:ima="http://www.imamuseum.org/nuxeo-extensions/#1.0">
+	
+	<!-- This schema describes the IMA artwork metadata we expose to Nuxeo -->
+	<xs:element name="art_id" type="xs:int" />
+	<xs:element name="accession_number" type="xs:string" />
+	<xs:element name="previous_accession_number" type="xs:string" />
+	<xs:element name="title" type="xs:string" />
+	<xs:element name="creation_date" type="xs:string" />
+	<xs:element name="converted_dimensions" type="xs:string" />
+	<xs:element name="material_medium_support" type="xs:string" />
+	<xs:element name="current_location" type="xs:string" />
+	<xs:element name="artist" type="xs:string" />
+	<xs:element name="image_id" type="xs:string" />
+
+</xs:schema>

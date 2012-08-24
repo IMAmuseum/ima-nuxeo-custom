@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.actions">
+
+	<!-- Define a custom action for CollectionSurvey for exporting a report -->
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="actions">
+
+		<action icon="/icons/report.png" id="collectionSurveyAction"
+			label="label.report.action" link="ima_collection_survey_report" order="50">
+			<category>DOCUMENT_UPPER_ACTION_BLANK_TARGET</category>
+			<filter id="collection_survey_report_filter">
+				<rule grant="true">
+					<type>CollectionSurvey</type>
+				</rule>
+			</filter>
+		</action>
+
+	</extension>
+
+</component>

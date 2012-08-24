@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xs:schema version="0.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.imamuseum.org/nuxeo-extensions/#1.0"
+	xmlns:ima="http://www.imamuseum.org/nuxeo-extensions/#1.0">
+
+	<xs:simpleType name="art_id_list">
+		<xs:list itemType="xs:string" />
+	</xs:simpleType>
+
+	<xs:element name="art_ids" type="ima:art_id_list">
+		<xs:annotation>
+			<xs:documentation>
+				The identifier(s) for works in the IMA collection.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="org.imamuseum.nuxeo.custom.eventService">
+
+	<extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+		<!-- This listener is used to autogenerate the title of new CollectionSurvey documents -->
+		<listener name="imaCollectionCreationListener" async="false"
+			postCommit="false"
+			class="org.imamuseum.nuxeo.custom.eventService.IMACollectionCreationListener"
+			priority="10">
+			<event>documentCreated</event>
+		</listener>
+
+	</extension>
+
+</component>

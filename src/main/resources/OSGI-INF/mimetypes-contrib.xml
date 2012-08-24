@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.mimetypes">
+
+	<!-- Additional mimetypes that are not picked up by default -->
+	<extension target="org.nuxeo.ecm.platform.mimetype.service.MimetypeRegistryService" point="mimetype">
+
+		<mimetype normalized="video/x-ms-wmv" binary="true" iconPath="video.png">
+			<mimetypes>
+				<mimetype>video/x-ms-wmv</mimetype>
+			</mimetypes>
+			<extensions>
+				<extension>wmv</extension>
+			</extensions>
+		</mimetype>
+
+		<mimetype normalized="image/vnd.adobe.photoshop" binary="true" iconPath="image.gif">
+			<mimetypes>
+				<mimetype>image/vnd.adobe.photoshop</mimetype>
+			</mimetypes>
+			<extensions>
+				<extension>psd</extension>
+			</extensions>
+		</mimetype>
+
+	</extension>
+
+</component>

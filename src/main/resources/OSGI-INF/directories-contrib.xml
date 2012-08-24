@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.directories">
+
+	<require>org.imamuseum.nuxeo.custom.types</require>
+
+	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory" point="directories">
+
+		<!-- This custom directory points to a MySQL database holding collection metadata -->
+		<directory name="ima_art_metadata_mercury_directory">
+			<schema>ima_art_metadata</schema>
+			<dataSource>jdbc/mercury</dataSource> <!-- declared in ima installation template -->
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>art_id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>never</createTablePolicy>
+			<querySizeLimit>500</querySizeLimit>
+			<table>NUXEO_IMA_Art_Metadata</table>
+			<readOnly>true</readOnly>
+			<substringMatchType>subinitial</substringMatchType>
+		</directory>
+
+	</extension>
+	
+</component>

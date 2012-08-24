@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<component name="org.imamuseum.nuxeo.custom.types">
+
+	<!-- Need to require these extensions so they are loaded first and we can override -->
+	<require>org.nuxeo.dam.schemas</require>
+	<require>org.nuxeo.nuxeo.ecm.platform.video.doctype</require>
+	<require>org.nuxeo.ecm.platform.picture.coreTypes</require>
+
+	<!-- BEGIN SCHEMA EXTENSIONS -->
+
+	<!-- A set of custom fields used by new media on the Video document type -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+		<schema name="ima_new_media" src="schemas/ima_new_media.xsd" prefix="ima_new_media" />
+	</extension>
+	
+	<!-- An integer field for setting the priority on the Picture document type. Used for ordering images online. -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+		<schema name="ima_image_priority" src="schemas/ima_image_priority.xsd" prefix="ima_image_priority" />
+	</extension>
+
+	<!-- Used for fetching metadata on artworks and for custom Artwork document type -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+		<schema name="ima_art_metadata" src="schemas/ima_art_metadata.xsd" />
+	</extension>
+
+	<!-- Used for relating documents to Artwork document types by our internal identifiers -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+		<schema name="ima_art_ids" src="schemas/ima_art_ids.xsd" />
+	</extension>
+
+	<!-- Used for the custom conservation CollectionSurvey document type -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+		<schema name="ima_collection_survey" src="schemas/ima_collection_survey.xsd" />
+	</extension>
+
+	<!-- END SCHEMA EXTENSIONS -->
+
+	<!-- BEGIN CUSTOM DOCUMENT TYPES AND OVERRIDES -->
+
+	<!-- Add our custom fields to the Video document type -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+		<doctype name="Video" extends="Document">
+			<schema name="common" />
+			<schema name="dublincore" />
+			<schema name="uid" />
+			<schema name="ima_new_media" /> <!-- addition -->
+			<facet name="Commentable" />
+			<facet name="Versionable" />
+			<facet name="Publishable" />
+			<facet name="Video" />
+			<facet name="HasStoryboard" />
+			<facet name="HasVideoPreview" />
+			<facet name="Asset" />
+		</doctype>
+	</extension>
+
+	<!-- Add our custom fields to the Picture document type -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+		<doctype name="Picture" extends="Document">
+			<schema name="common" />
+			<schema name="uid" />
+			<schema name="dublincore" />
+			<schema name="ima_image_priority" /> <!-- addition -->
+			<facet name="MultiviewPicture" />
+			<facet name="Picture" />
+			<facet name="Versionable" />
+			<facet name="Publishable" />
+			<facet name="Commentable" />
+			<facet name="HasRelatedText" />
+			<facet name="Asset" />
+		</doctype>
+	</extension>
+
+	<!-- A container domain for holding all of the Artwork document types -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+		<doctype name="ArtworkLibrary" extends="Domain">
+		</doctype>
+	</extension>
+	
+	<!-- A custom Artwork document type for representing works in our collection -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+		<doctype name="Artwork" extends="Document">
+			<schema name="common" />
+			<schema name="uid" />
+			<schema name="dublincore" />
+			<schema name="ima_art_metadata" />
+		</doctype>
+	</extension>
+
+	<!-- A custom CollectionSurvey document type for a conservation survey of the IMA collection -->
+	<extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+		<doctype name="CollectionSurvey" extends="Document">
+			<schema name="common" />
+			<schema name="uid" />
+			<schema name="dublincore" />
+			<schema name="ima_art_ids" />
+			<schema name="ima_collection_survey" />
+			<facet name="Versionable" />
+			<facet name="Publishable" />
+			<facet name="Commentable" />
+		</doctype>
+	</extension>
+	
+	<!-- END CUSTOM DOCUMENT TYPES AND OVERRIDES -->
+
+	<!-- BEGIN WORKFLOW ENABLEMENT -->
+	
+	<!-- Enable workflows for our custom document types -->
+	<extension target="org.nuxeo.ecm.core.lifecycle.LifeCycleService" point="types">
+		<types>
+			<type name="ArtworkLibrary">default</type>
+			<type name="Artwork">default</type>
+			<type name="CollectionSurvey">default</type>
+		</types>
+	</extension>
+	
+	<extension target="org.nuxeo.ecm.platform.actions.ActionService" point="filters">
+		<filter id="jbpm-process" append="true">
+			<rule grant="true">
+				<type>ArtworkLibrary</type>
+				<type>Artwork</type>
+				<type>CollectionSurvey</type>
+			</rule>
+		</filter>
+	</extension>
+	
+	<extension target="org.nuxeo.ecm.platform.jbpm.core.JbpmService" point="typeFilter">
+		<type name="ArtworkLibrary">
+			<processDefinition>review_approbation</processDefinition>
+		</type>
+		<type name="Artwork">
+			<processDefinition>review_approbation</processDefinition>
+		</type>
+		<type name="CollectionSurvey">
+			<processDefinition>review_approbation</processDefinition>
+		</type>
+	</extension>
+
+	<!-- END WORKFLOW ENABLEMENT -->
+    
+</component>

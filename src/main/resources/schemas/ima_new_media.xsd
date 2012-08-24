@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.imamuseum.org/nuxeo-extensions#1.0"
+	version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ima_new_media="http://www.imamuseum.org/nuxeo-extensions#1.0">
+
+	<xs:element name="series_title" type="ima_new_media:title_type">
+		<xs:annotation>
+			<xs:documentation>
+				The title of a series in which the video is a part of.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="series_description" type="xs:string">
+    	<xs:annotation>
+    		<xs:documentation>
+    			The description of a series in which the video is a part of.
+   			</xs:documentation>
+    	</xs:annotation>
+   	</xs:element>
+
+    <xs:element name="artbabble_id" type="ima_new_media:babble_id_type">
+    	<xs:annotation>
+    		<xs:documentation>
+    			An ArtBabble identifier which is exactly 16 hex digits.
+    		</xs:documentation>
+    	</xs:annotation>
+    </xs:element>
+
+    <xs:element name="imatv_babble_id" type="ima_new_media:babble_id_type">
+    	<xs:annotation>
+    		<xs:documentation>
+    			An IMAtv Babble identifier which is exactly 16 hex
+    			digits.
+    		</xs:documentation>
+    	</xs:annotation>
+    </xs:element>
+
+    <xs:element name="artbabble_title" type="ima_new_media:title_type">
+    	<xs:annotation>
+    		<xs:documentation>
+    			The title of the video prepared for ArtBabble.
+    		</xs:documentation>
+    	</xs:annotation>
+    </xs:element>
+
+    <xs:element name="itunesu_title" type="ima_new_media:title_type">
+    	<xs:annotation>
+    		<xs:documentation>
+    			The title of the video prepared for iTunesU.
+    		</xs:documentation>
+    	</xs:annotation>
+    </xs:element>
+    
+    <xs:simpleType name="title_type">
+        <xs:annotation>
+        	<xs:documentation>A reuseable title field.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+    		<xs:maxLength value="1024"></xs:maxLength>
+    	</xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="babble_id_type">
+        <xs:annotation>
+        	<xs:documentation>A Babble identifer for a video which is exactly 16 hex digits.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+    		<xs:length value="16"></xs:length>
+    		<xs:pattern value="[a-f,0-9]{16}"></xs:pattern>
+    	</xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>
