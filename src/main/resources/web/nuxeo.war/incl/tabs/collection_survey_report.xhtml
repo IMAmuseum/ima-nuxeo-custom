@@ -1,0 +1,344 @@
+<div class="ima-collection-survey-report"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:nxu="http://nuxeo.org/nxweb/util">
+	
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/collection_survey_report.css" />
+	
+	<c:set var="cs" value="#{currentDocument.getProperties('ima_collection_survey')}" />
+	
+	<table class="header">
+		<tr>
+			<td class="logo"><h:graphicImage value="/img/logo-ima-large.png" /></td>
+			<td class="address">
+				<p><strong>Conservation Department</strong><br/>
+				4000 Michigan Road<br/>
+				Indianapolis, IN 46208<br/>
+				t (317) 913-1331<br/>
+				f (317) 920-0399<br/>
+				http://www.imamuseum.org</p>
+			</td>
+			<td class="art-image" align="right">
+				<nxu:set var="item" value="#{currentDocument.getProperty('ima_art_ids', 'art_ids')[0]}" cache="true">
+					<nxu:set var="info" value="#{artworksSuggestionActions.getArtworkInfo(item)}" cache="true">
+						<h:graphicImage url="#{info.medium_url}" rendered="#{not empty info.medium_url}"/>
+					</nxu:set>
+				</nxu:set>
+			</td>
+		</tr>
+	</table>
+	
+	<table width="100%"><tr>
+	<td width="49%" valign="top">
+	<div class="ima-art-metadata">
+		<h2>Object(s):</h2>
+		
+		<c:forEach var="item" items="#{currentDocument.getProperty('ima_art_ids', 'art_ids')}">
+			<div class="ima-art-metadata-inner">
+				<nxu:set var="info" value="#{artworksSuggestionActions.getArtworkInfo(item)}" cache="true">
+					<em><strong class="title"><h:outputText value="#{info.title}" /></strong></em><br />
+					<c:if test="#{not empty info.artist}">
+						<h:outputText value="#{info.artist}" /><br />
+					</c:if>
+					<c:if test="#{not empty info.creation_date}">
+						<h:outputText value="#{info.creation_date}" /><br />
+					</c:if>
+					<c:if test="#{not empty info.converted_dimensions}">
+						<h:outputText value="#{info.converted_dimensions}" /><br />
+					</c:if>
+					<c:if test="#{not empty info.material_medium_support}">
+						<h:outputText value="#{info.material_medium_support}" /><br />
+					</c:if>
+					<c:if test="#{not empty info.current_location}">
+						<h:outputText value="#{info.current_location}" /><br />
+					</c:if>
+					<h:outputText value="#{info.accession_number}" />
+					<c:if test="#{not empty info.previous_accession_number}">
+						<span class="previous-accnbr">(previously: <h:outputText value="#{info.previous_accession_number}" />)</span>
+					</c:if>
+				</nxu:set>
+			</div>
+		</c:forEach>
+	</div>
+	</td>
+	
+	<td width="2%"></td>
+	
+	<td width="49%" valign="top">
+	<div class="ima-collection-survey-admin-metadata">
+		<h2>Examined By:</h2>
+		
+		<div class="ima-collection-survey-admin-metadata-inner">
+			<strong><h:outputText value="#{messages['label.dublincore.creator']}"/></strong>
+			<h:outputText value="#{nxu:userFullName(currentDocument.dublincore.creator)}" /><br />
+			
+			<strong><h:outputText value="#{messages['label.dublincore.contributors']}"/></strong>
+			<c:forEach var="contributor" items="#{currentDocument.dublincore.contributors}" varStatus="rowCounter">
+				<h:outputText value="#{nxu:userFullName(contributor)}" />
+				<h:outputText value="; " />
+			</c:forEach><br />
+			
+			<strong><h:outputText value="#{messages['label.dublincore.created']}"/></strong>
+			<h:outputText value="#{currentDocument.dublincore.created}">
+				<f:convertDateTime type="date" pattern="#{nxu:dateAndTimeFormater('long')}" />					
+			</h:outputText><br />
+			
+			<strong><h:outputText value="#{messages['label.dublincore.modified']}"/></strong>
+			<h:outputText value="#{currentDocument.dublincore.modified}">
+				<f:convertDateTime type="date" pattern="#{nxu:dateAndTimeFormater('long')}" />					
+			</h:outputText>
+
+			<div class="ima-collection-survey-metadata">
+				<c:if test="#{not empty cs['exam_location']}">
+				<p class="exam_location">
+					<strong><h:outputText value="#{messages['label.title.exam_location']}" /></strong>
+					<h:outputText value="#{cs['exam_location']}" />
+				</p>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	</td>
+	</tr></table>
+
+	<div class="ima-collection-survey-metadata">
+		<c:if test="#{not empty cs['marks']}">
+		<p class="structural_priority">
+			<strong><h:outputText value="#{messages['label.title.marks']}" /></strong>
+			<h:outputText value="#{cs['marks']}" />
+		</p>
+		</c:if>
+	</div>
+	
+	<div class="ima-collection-survey-metadata">
+		<h2>Condition Survey:</h2>
+
+		<p class="collection_survey_priority structural_priority">
+			<strong><h:outputText value="#{messages['label.title.structural_priority']}" /></strong>
+			<c:choose>
+				<c:when test="#{cs['structural_priority'] == 0}">
+					<h:outputText value="None" styleClass="priority priority-none" />
+				</c:when>
+				<c:when test="#{cs['structural_priority'] == 1}">
+					<h:outputText value="Low" styleClass="priority priority-low" />
+				</c:when>
+				<c:when test="#{cs['structural_priority'] == 2}">
+					<h:outputText value="Medium" styleClass="priority priority-medium" />
+				</c:when>
+				<c:when test="#{cs['structural_priority'] == 3}">
+					<h:outputText value="High" styleClass="priority priority-high" />
+				</c:when>
+			</c:choose>
+		</p>
+
+		<p class="collection_survey_priority aesthetic_priority">
+			<strong><h:outputText value="#{messages['label.title.aesthetic_priority']}" /></strong>
+			<c:choose>
+				<c:when test="#{cs['aesthetic_priority'] == 0}">
+					<h:outputText value="None" styleClass="priority priority-none" />
+				</c:when>
+				<c:when test="#{cs['aesthetic_priority'] == 1}">
+					<h:outputText value="Low" styleClass="priority priority-low" />
+				</c:when>
+				<c:when test="#{cs['aesthetic_priority'] == 2}">
+					<h:outputText value="Medium" styleClass="priority priority-medium" />
+				</c:when>
+				<c:when test="#{cs['aesthetic_priority'] == 3}">
+					<h:outputText value="High" styleClass="priority priority-high" />
+				</c:when>
+			</c:choose>
+		</p>
+		
+		<p class="collection_survey_condition storage_condition">
+			<strong><h:outputText value="#{messages['label.title.storage_condition']}" /></strong>
+			<c:choose>
+				<c:when test="#{cs['storage_condition'] == 1}">
+					<h:outputText value="Good" styleClass="condition condition-good" />
+				</c:when>
+				<c:when test="#{cs['storage_condition'] == 2}">
+					<h:outputText value="Fair" styleClass="condition condition-fair" />
+				</c:when>
+				<c:when test="#{cs['storage_condition'] == 3}">
+					<h:outputText value="Poor" styleClass="condition condition-poor" />
+				</c:when>
+			</c:choose>
+		</p>
+		
+		<c:if test="#{not empty cs['loan_eligibility']}">
+			<p class="collection_survey_loan_eligibility loan_eligibility">
+				<strong><h:outputText value="#{messages['label.title.loan_eligibility']}" /></strong>
+				<c:choose>
+					<c:when test="#{cs['loan_eligibility'] == 0}">
+						<h:outputText value="#{messages['label.loan_eligibility.no']}" />
+					</c:when>
+					<c:when test="#{cs['loan_eligibility'] == 1}">
+						<h:outputText value="#{messages['label.loan_eligibility.yes']}" />
+					</c:when>
+					<c:when test="#{cs['loan_eligibility'] == 2}">
+						<h:outputText value="#{messages['label.loan_eligibility.after']}" />
+					</c:when>
+				</c:choose>
+			</p>
+		</c:if>
+		
+		<c:if test="#{not empty cs['flag_information']}">
+		<p class="flag_information">
+			<strong><h:outputText value="#{messages['label.title.flag_information']}" /></strong>
+			<h:graphicImage value="/icons/flag_red.png" styleClass="flag-information-icon" />
+			<h:outputText value="#{cs['flag_information']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['condition_description']}">
+		<p class="condition_description">
+			<strong><h:outputText value="#{messages['label.title.condition_description']}" /></strong>
+			<h:outputText escape="false" value="#{artworksSuggestionActions.nl2br(cs['condition_description'])}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['condition_general']}">
+		<p class="condition_general">
+			<strong><h:outputText value="#{messages['label.title.condition_general']}" /></strong>
+			<h:outputText escape="false" value="#{artworksSuggestionActions.nl2br(cs['condition_general'])}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['mount']}">
+		<p class="mount">
+			<strong><h:outputText value="#{messages['label.title.mount']}" /></strong>
+			<h:outputText value="#{cs['mount']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['support_secondary']}">
+		<p class="support_secondary">
+			<strong><h:outputText value="#{messages['label.title.support_secondary']}" /></strong>
+			<h:outputText value="#{cs['support_secondary']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['support_primary']}">
+		<p class="support_primary">
+			<strong><h:outputText value="#{messages['label.title.support_primary']}" /></strong>
+			<h:outputText value="#{cs['support_primary']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['ground']}">
+		<p class="ground">
+			<strong><h:outputText value="#{messages['label.title.ground']}" /></strong>
+			<h:outputText value="#{cs['ground']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['media']}">
+		<p class="media">
+			<strong><h:outputText value="#{messages['label.title.media']}" /></strong>
+			<h:outputText value="#{cs['media']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['surface']}">
+		<p class="structural_priority">
+			<strong><h:outputText value="#{messages['label.title.surface']}" /></strong>
+			<h:outputText value="#{cs['surface']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['storage_display']}">
+		<p class="storage_display">
+			<strong><h:outputText value="#{messages['label.title.storage_display']}" /></strong>
+			<h:outputText value="#{cs['storage_display']}" />
+		</p>
+		</c:if>
+		
+		<c:if test="#{not empty cs['testing']}">
+		<p class="testing">
+			<strong><h:outputText value="#{messages['label.title.testing']}" /></strong>
+			<h:outputText value="#{cs['testing']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['proposed_treatment']}">
+		<p class="proposed_treatment">
+			<strong><h:outputText value="#{messages['label.title.proposed_treatment']}" /></strong>
+			<h:outputText value="#{cs['proposed_treatment']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['proposed_treatment_time']}">
+		<p class="proposed_treatment_time">
+			<strong><h:outputText value="#{messages['label.title.proposed_treatment_time']}" /></strong>
+			<h:outputText value="#{cs['proposed_treatment_time']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['required_treatment']}">
+		<p class="required_treatment">
+			<strong><h:outputText value="#{messages['label.title.required_treatment']}" /></strong>
+			<h:outputText value="#{cs['required_treatment']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['required_treatment_time']}">
+		<p class="required_treatment_time">
+			<strong><h:outputText value="#{messages['label.title.required_treatment_time']}" /></strong>
+			<h:outputText value="#{cs['required_treatment_time']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['anticipated_treatment_results']}">
+		<p class="anticipated_treatment_results">
+			<strong><h:outputText value="#{messages['label.title.anticipated_treatment_results']}" /></strong>
+			<h:outputText value="#{cs['anticipated_treatment_results']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['recommendations']}">
+		<p class="recommendations">
+			<strong><h:outputText value="#{messages['label.title.recommendations']}" /></strong>
+			<h:outputText value="#{cs['recommendations']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['travel_recommendations']}">
+		<p class="travel_recommendations">
+			<strong><h:outputText value="#{messages['label.title.travel_recommendations']}" /></strong>
+			<h:outputText value="#{cs['travel_recommendations']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['optimal_storage_parameters']}">
+		<p class="optimal_storage_parameters">
+			<strong><h:outputText value="#{messages['label.title.optimal_storage_parameters']}" /></strong>
+			<h:outputText value="#{cs['optimal_storage_parameters']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['optimal_display_parameters']}">
+		<p class="optimal_display_parameters">
+			<strong><h:outputText value="#{messages['label.title.optimal_display_parameters']}" /></strong>
+			<h:outputText value="#{cs['optimal_display_parameters']}" />
+		</p>
+		</c:if>
+
+		<c:if test="#{not empty cs['additional_information']}">
+		<p class="additional_information">
+			<strong><h:outputText value="#{messages['label.title.additional_information']}" /></strong>
+			<h:graphicImage value="/icons/flag_yellow.png" styleClass="flag-information-icon" />
+			<h:outputText value="#{cs['additional_information']}" />
+		</p>
+		</c:if>
+		
+	</div>
+	
+</div>

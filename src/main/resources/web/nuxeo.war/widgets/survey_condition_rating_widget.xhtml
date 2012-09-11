@@ -1,0 +1,29 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich" class="#{widget.id}">
+
+	<c:if test="#{widget.mode == 'edit'}">
+
+		<h:selectOneRadio value="#{field}" id="#{widget.id}_checkbox" required="#{widget.required}">
+			<f:selectItem itemValue="1" itemLabel="#{messages['label.condition.good']}" />
+			<f:selectItem itemValue="2" itemLabel="#{messages['label.condition.fair']}" />
+			<f:selectItem itemValue="3" itemLabel="#{messages['label.condition.poor']}" />
+		</h:selectOneRadio>
+		<h:message styleClass="errorMessage" for="#{widget.id}_checkbox"
+			id="#{widget.id}_message" />
+
+	</c:if>
+
+	<c:if test="#{widget.mode != 'edit'}">
+
+		<h:outputText rendered="#{field == 1}" value="#{messages['label.condition.good']}" />
+		<h:outputText rendered="#{field == 2}" value="#{messages['label.condition.fair']}" />
+		<h:outputText rendered="#{field == 3}" value="#{messages['label.condition.poor']}" />
+
+	</c:if>
+
+</div>

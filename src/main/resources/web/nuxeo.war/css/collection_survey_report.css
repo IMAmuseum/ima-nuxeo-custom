@@ -1,0 +1,117 @@
+.ima-collection-survey-report table,
+.ima-collection-survey-report tr,
+.ima-collection-survey-report td,
+.ima-collection-survey-repory div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.ima-collection-survey-report,
+.ima-collection-survey-report div {
+	font: normal 11px 'Lucida Grande', Verdana, Arial, sans-serif;
+}
+
+@media print {
+	.ima-collection-survey-report table,
+	.ima-collection-survey-report .ima-collection-survey-metadata p {
+		page-break-inside: avoid;
+	}
+}
+
+.ima-collection-survey-report h2 {
+	font-size: 16px;
+	padding: 2px;
+	border-bottom: 1px solid #666;
+	background-color: #BBB;
+}
+
+.ima-collection-survey-report .header {
+	width: 100%;
+}
+
+.ima-collection-survey-report .header .logo {
+	vertical-align: top;
+	width: 130px;
+}
+
+.ima-collection-survey-report .header .logo img {
+	width: 110px;
+	height: 122px;
+}
+
+.ima-collection-survey-report .header .address {
+	font-size: 11px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.ima-collection-survey-report .header .art-image img {
+	padding: 3px;
+	border: 1px solid #666;
+}
+
+.ima-collection-survey-report .ima-art-metadata-inner .title {
+	font-size: 13px;
+}
+
+.ima-collection-survey-report .ima-collection-survey-admin-metadata strong {
+	margin-right: 5px;
+}
+
+.ima-collection-survey-report .ima-collection-survey-metadata strong {
+	display: block;
+	text-indent: 2px;
+	background-color: #DDD;
+}
+
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority strong,
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_condition strong,
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility strong {
+	display: block;
+	float: left;
+	width: 200px;
+	text-align: right;
+	background-color: #DDD;
+	margin-right: 5px;
+	padding-right: 2px;
+}
+
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority .priority,
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_condition .condition, 
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility .priority {
+	width: 100px;
+	height: 14px;
+	display: block;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority .priority-none, 
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility .priority-none {
+	background: url('/nuxeo/img/sprite-nonelowmediumhigh.png') 0 0;
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority .priority-low, 
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility .priority-low {
+	background: url('/nuxeo/img/sprite-nonelowmediumhigh.png') 0 -14px;
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority .priority-medium, 
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility .priority-medium {
+	background: url('/nuxeo/img/sprite-nonelowmediumhigh.png') 0 -28px;	
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_priority .priority-high, 
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_loan_eligibility .priority-high {
+	background: url('/nuxeo/img/sprite-nonelowmediumhigh.png') 0 -42px;
+}
+
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_condition .condition-poor {
+	background: url('/nuxeo/img/sprite-poorfairgood.png') 0 0;
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_condition .condition-fair {
+	background: url('/nuxeo/img/sprite-poorfairgood.png') 0 -14px;
+}
+.ima-collection-survey-report .ima-collection-survey-metadata .collection_survey_condition .condition-good {
+	background: url('/nuxeo/img/sprite-poorfairgood.png') 0 -28px;	
+}
+
+.ima-collection-survey-report .ima-collection-survey-metadata .flag-information-icon {
+	float: left;
+}

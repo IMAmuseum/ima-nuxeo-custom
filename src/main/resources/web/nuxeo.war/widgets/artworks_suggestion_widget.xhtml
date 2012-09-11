@@ -1,0 +1,124 @@
+<div xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxdir="http://nuxeo.org/nxdirectory"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	class="#{widget.id}"
+	style="width:480px">
+
+	<c:if test="#{widget.mode != 'edit'}">
+	
+		<table><tbody>
+		<c:forEach var="item" items="#{field_0}">
+			<nxu:set var="info" value="#{artworksSuggestionActions.getArtworkInfo(item)}" cache="true">
+				<tr class="#{widget.id}_display_line">
+					<td><h:graphicImage url="#{info.thumbnail_url}" rendered="#{not empty info.thumbnail_url}"/></td>
+					<td><h:outputLink value="#{info.link_url}" target="_blank">
+						<h:outputText value="#{info.accession_number}" />
+						<h:graphicImage value="/icons/external.gif" />
+					</h:outputLink><br />
+					<em><h:outputText value="#{info.title}" /></em></td>
+				</tr>
+			</nxu:set>
+		</c:forEach>
+		</tbody></table>
+
+	</c:if>
+
+	<c:if test="#{widget.mode == 'edit'}">
+
+		<c:set var="minChars"
+			value="#{nxu:test(!empty widget.properties.minChars, widget.properties.minChars, '2')}" />
+		<c:set var="frequency"
+			value="#{nxu:test(!empty widget.properties.frequency, widget.properties.frequency, '0')}" />
+		<c:set var="requestDelay"
+			value="#{nxu:test(!empty widget.properties.requestDelay, widget.properties.requestDelay, '100')}" />
+		<c:set var="displayHorizontally"
+			value="#{nxu:test(!empty widget.properties.displayHorizontally, widget.properties.displayHorizontally, true)}" />
+		<c:set var="displayHelpLabel"
+			value="#{nxu:test(!empty widget.properties.displayHelpLabel, widget.properties.displayHelpLabel, true)}" />
+		<c:set var="suggestionWidth"
+			value="${nxu:test(!empty widget.properties.width, widget.properties.width, '400')}" />
+
+		<a4j:region renderRegionOnly="true" id="#{widget.id}_ajax_region">
+			<h:panelGrid id="#{widget.id}_panel"
+				columns="${nxu:test(displayHorizontally, 2, 1)}">
+
+				<h:panelGroup id="#{widget.id}_panelGroup">
+					<span id="#{widget.id}_suggestDiv"> <h:inputText
+							id="#{widget.id}_suggest"
+							onkeydown="if (event.keyCode == 13) {return false;}" /> </span>
+					<a4j:status>
+						<f:facet name="start">
+							<h:graphicImage value="/img/standart_waiter.gif" />
+						</f:facet>
+					</a4j:status>
+					<rich:suggestionbox id="#{widget.id}_suggestionBox"
+						for="#{widget.id}_suggest" tokens=""
+						suggestionAction="#{artworksSuggestionActions.getSuggestions}"
+						var="result" fetchValue=""
+						nothingLabel="#{messages['label.suggestion.noSearchResultsOrSearchOverflow']}"
+						width="#{suggestionWidth}" minChars="#{minChars}"
+						frequency="#{frequency}" requestDelay="#{requestDelay}">
+						<a4j:support event="onselect" focus="#{widget.id}_suggest"
+							bypassUpdates="true" reRender="#{widget.id}_listRegion"
+							id="#{widget.id}_listRegion_select">
+							<f:setPropertyActionListener value="#{result['id']}"
+								target="#{suggestionActions.selectedValue}" />
+							<nxu:actionListenerMethod
+								value="#{suggestionActions.addBoundSelectionToList}" />
+							<f:param name="suggestionSelectionListId"
+								value="#{widget.id}_list" />
+						</a4j:support>
+						<h:column>
+							<h:outputText value="#{result.accession_number} - #{result.title}" />
+						</h:column>
+					</rich:suggestionbox>
+					<c:if test="#{displayHelpLabel}">
+						<br />
+						<h:outputFormat value="#{messages['label.suggestion.help.minChars']}">
+							<f:param value="#{minChars}" />
+						</h:outputFormat>
+					</c:if>
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<a4j:outputPanel ajaxRendered="false" id="#{widget.id}_listRegion">
+						<nxu:inputList id="#{widget.id}_list" value="#{field_0}"
+							model="model" required="#{widget.required}">
+							<h:panelGroup id="#{widget.id}_listItem">
+								<h:panelGrid columns="2">
+									<a4j:commandLink immediate="true"
+										actionListener="#{editableListBean.performAction}"
+										id="#{widget.id}_delete" reRender="#{widget.id}_listRegion"
+										bypassUpdates="true">
+										<h:graphicImage value="/icons/action_delete.gif" />
+										<f:param name="for" value="#{widget.id}_list" />
+										<f:param name="index" value="#{model.rowIndex}" />
+										<f:param name="type" value="remove" />
+									</a4j:commandLink>
+									<nxu:set var="info" value="#{artworksSuggestionActions.getArtworkInfo(model.rowData)}" cache="false">
+										<h:outputLink value="#{info.link_url}" target="_blank">
+											<h:outputText value="#{info.accession_number}" />
+											<h:graphicImage value="/icons/external.gif" />
+										</h:outputLink>
+										<h:outputText value=" - " />
+										<em><h:outputText value="#{info.title}" /></em>
+									</nxu:set>
+								</h:panelGrid>
+							</h:panelGroup>
+						</nxu:inputList>
+						<h:message styleClass="errorMessage" for="#{widget.id}_list"
+							id="#{widget.id}_message" />
+					</a4j:outputPanel>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+		</a4j:region>
+
+	</c:if>
+
+</div>
