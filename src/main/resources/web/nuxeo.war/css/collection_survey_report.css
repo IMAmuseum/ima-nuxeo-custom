@@ -45,9 +45,15 @@
 	vertical-align: top;
 }
 
+.ima-collection-survey-report .header .art-image {
+	padding-bottom: 10px;
+}
+
 .ima-collection-survey-report .header .art-image img {
 	padding: 3px;
 	border: 1px solid #666;
+	max-width: 150px;
+	max-height: 150px;
 }
 
 .ima-collection-survey-report .ima-art-metadata-inner .title {

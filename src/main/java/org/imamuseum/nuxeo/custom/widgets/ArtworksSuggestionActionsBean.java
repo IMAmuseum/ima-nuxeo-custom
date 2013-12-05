@@ -146,7 +146,7 @@ public class ArtworksSuggestionActionsBean implements Serializable {
 			String imageId = (String)res.get("image_id");
 			if (imageId != null && imageId.length() == 36) {
 				String[] thumbnail_url_parts = {
-					"https://project.imamuseum.org/ima-collections-proxy/mercurycache/nuxeo_thumb/ima-collections/images",
+					"https://project.imamuseum.org/ima-collections-proxy/ima-collections/images",
 					imageId.substring(0, 2),
 					imageId.substring(2, 4),
 					imageId,
@@ -155,7 +155,7 @@ public class ArtworksSuggestionActionsBean implements Serializable {
 				res.put("thumbnail_url", StringUtils.join(thumbnail_url_parts, "/"));
 				
 				String[] medium_url_parts = {
-					"https://project.imamuseum.org/ima-collections-proxy/mercurycache/nuxeo_medium/ima-collections/images",
+					"https://project.imamuseum.org/ima-collections-proxy/ima-collections/images",
 					imageId.substring(0, 2),
 					imageId.substring(2, 4),
 					imageId,
